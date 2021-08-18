@@ -64,6 +64,11 @@ open class WSTagView: UIView, UITextInputTraits {
     open var selectedColor: UIColor? {
         didSet { updateContent(animated: false) }
     }
+    
+    /// Background color to be used for unselected state.
+    open var unselectedColor: UIColor? {
+        didSet { updateContent(animated: false) }
+    }
 
     open var textColor: UIColor? {
         didSet { updateContent(animated: false) }
@@ -105,17 +110,15 @@ open class WSTagView: UIView, UITextInputTraits {
     public init(tag: WSTag) {
         super.init(frame: CGRect.zero)
         
-        //[yjk: 기본 상태의 배경색을 투명하게 하면서, Cursor에 색상을 주기 위해서, tintColor를 사용하게 할 경우 기본 상태의 배경색을 투명하게 할 경우 커서도 투명해진다.
-        //self.backgroundColor = .tintColor
-        self.backgroundColor = .clear
-        //]
-        
         self.layer.cornerRadius = cornerRadius
         self.layer.masksToBounds = true
 
         textColor = .white
         selectedColor = .gray
+        unselectedColor = .clear
         selectedTextColor = .black
+                
+        self.backgroundColor = unselectedColor
 
         textLabel.frame = CGRect(x: layoutMargins.left, y: layoutMargins.top, width: 0, height: 0)
         textLabel.font = font
@@ -140,11 +143,7 @@ open class WSTagView: UIView, UITextInputTraits {
 
     fileprivate func updateColors() {
         
-        //[yjk: 기본 상태의 배경색을 투명하게 하면서, Cursor에 색상을 주기 위해서, tintColor를 사용하게 할 경우 기본 상태의 배경색을 투명하게 할 경우 커서도 투명해진다.
-        
-        //self.backgroundColor = selected ? selectedColor : tintColor
-        self.backgroundColor = selected ? selectedColor : .clear
-        //]
+        self.backgroundColor = selected ? selectedColor : unselectedColor
         
         textLabel.textColor = selected ? selectedTextColor : textColor
     }

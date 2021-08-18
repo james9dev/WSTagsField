@@ -72,6 +72,7 @@ class ViewController: UIViewController {
         tagsField.tintColor = .red
         tagsField.textColor = .blue
         tagsField.selectedColor = .yellow
+        tagsField.unselectedColor = .red
         tagsField.selectedTextColor = .black
         tagsField.delimiter = ","
         tagsField.isDelimiterVisible = true

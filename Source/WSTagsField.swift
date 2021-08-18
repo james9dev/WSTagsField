@@ -48,6 +48,13 @@ open class WSTagsField: UIScrollView {
             tagViews.forEach { $0.selectedColor = self.selectedColor }
         }
     }
+    
+    /// Background color for tag view in normal (unselected) state.
+    @IBInspectable open var unselectedColor: UIColor? {
+        didSet {
+            tagViews.forEach { $0.unselectedColor = self.unselectedColor }
+        }
+    }
 
     /// Text color for tag view in normal (selected) state.
     @IBInspectable open var selectedTextColor: UIColor? {
@@ -396,6 +403,7 @@ open class WSTagsField: UIScrollView {
         tagView.tintColor = self.tintColor
         tagView.textColor = self.textColor
         tagView.selectedColor = self.selectedColor
+        tagView.unselectedColor = self.unselectedColor
         tagView.selectedTextColor = self.selectedTextColor
         tagView.displayDelimiter = self.isDelimiterVisible ? self.delimiter : ""
         tagView.cornerRadius = self.cornerRadius
@@ -625,6 +633,7 @@ extension WSTagsField {
 
         textColor = .white
         selectedColor = .gray
+        unselectedColor = .clear
         selectedTextColor = .black
 
         clipsToBounds = true
