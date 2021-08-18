@@ -104,7 +104,12 @@ open class WSTagView: UIView, UITextInputTraits {
 
     public init(tag: WSTag) {
         super.init(frame: CGRect.zero)
-        self.backgroundColor = tintColor
+        
+        //[yjk: 기본 상태의 배경색을 투명하게 하면서, Cursor에 색상을 주기 위해서, tintColor를 사용하게 할 경우 기본 상태의 배경색을 투명하게 할 경우 커서도 투명해진다.
+        //self.backgroundColor = .tintColor
+        self.backgroundColor = .clear
+        //]
+        
         self.layer.cornerRadius = cornerRadius
         self.layer.masksToBounds = true
 
@@ -134,7 +139,13 @@ open class WSTagView: UIView, UITextInputTraits {
     // MARK: - Styling
 
     fileprivate func updateColors() {
-        self.backgroundColor = selected ? selectedColor : tintColor
+        
+        //[yjk: 기본 상태의 배경색을 투명하게 하면서, Cursor에 색상을 주기 위해서, tintColor를 사용하게 할 경우 기본 상태의 배경색을 투명하게 할 경우 커서도 투명해진다.
+        
+        //self.backgroundColor = selected ? selectedColor : tintColor
+        self.backgroundColor = selected ? selectedColor : .clear
+        //]
+        
         textLabel.textColor = selected ? selectedTextColor : textColor
     }
 
